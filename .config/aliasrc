@@ -1,0 +1,82 @@
+# Nick's light shell aliases
+
+# General utility
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias ls="ls --color=auto --group-directories-first"
+alias ll="ls -lh"
+alias la="ls -lah"
+alias lsd="ls -d"
+alias sudo="sudo "
+alias pbc="pbcopy"
+alias pbcopy="wl-copy"
+alias ag="rg -S"
+
+# (kitty terminfo workaround)
+[ "$TERM" = "xterm-kitty" ] && alias ssh="TERM=xterm ssh"
+
+# Utility colours
+alias grep="grep --color=auto"
+alias diff="diff --color=auto"
+
+# dotfiles management
+alias d="git --git-dir=$HOME/.dotcafe.git --work-tree=$HOME"
+
+# Shortcuts
+alias v="$EDITOR"
+alias vi="$EDITOR"
+alias vim="$EDITOR"
+alias g="git"
+
+alias srcb="source $HOME/.bashrc"
+alias srcz="source $HOME/.zshrc"
+alias srcp="source $HOME/.profile"
+alias srca="source $HOME/.config/aliasrc"
+
+# Config files
+alias cfb="$EDITOR $HOME/.bashrc"
+alias cfz="$EDITOR $HOME/.zshrc"
+alias cfp="$EDITOR $HOME/.profile"
+alias cfv="$EDITOR $HOME/.config/nvim"
+alias cfa="$EDITOR $HOME/.config/aliasrc"
+alias cfg="$EDITOR $HOME/.config/git/config"
+alias cfs="$EDITOR $HOME/.ssh/config"
+
+alias cdc="cd $HOME/.config"
+alias cdln="cd $HOME/.local/ntay"
+alias cdd="cd $HOME/Dev"
+
+
+# Utility quick commands
+alias mem="ps axch -o cmd:15,%mem --sort=-%mem | sed 10q"
+alias cpu="ps axch -o cmd:15,%cpu --sort=-%cpu | sed 10q"
+alias rcp="rsync -vzrh --times --stats --progress --itemize-changes"
+alias qr="qrencode -t ansiutf8"
+
+
+# Utility functions
+# Fuzzy find file + open in editor
+vf() { fzf | xargs -r -I % $EDITOR % ;}
+
+# nohup/disown no output combo opener
+nh() {
+	nohup "$@" >/dev/null 2>&1 &
+	disown
+}
+# Open with xdg-open handler in background
+alias open="nh xdg-open"
+
+# 'pipelining' utils e.g. `docker ps -a | skip 1 | col 1 |:: docker rm _`
+# from: https://news.ycombinator.com/item?id=38769352
+alias ::='sed "$ s/\n$//" | xargs -I_ --'
+col() { eval "awk '{ print \$$1 }'" ;}
+skip() { tail -n +$(($1 + 1)) ;}
+take() { head -n $1 ;}
+
+# Genshin import wish link retriever for e.g. paimon.moe tool
+# https://gist.github.com/nicholastay/4a8f8bb9b85c628d7a124dad998cdba4
+export GENSHIN_INSTALL_DIR="$HOME/.var/app/com.usebottles.bottles/data/bottles/bottles/Genshin/drive_c/Program Files/Genshin Impact"
+genshinlog() {
+	LATEST_CACHE="$(find "$GENSHIN_INSTALL_DIR"'/Genshin Impact game/GenshinImpact_Data/webCaches' -maxdepth 1 -type d -name '2.*' | sort | tail -1)"
+	grep -aoP 'https://hk4e-api-os.hoyoverse.com/.+?/getGachaLog.+?&game_biz=hk4e_global' "$LATEST_CACHE/Cache/Cache_Data/data_2" | tail -1 | tee /dev/tty | pbcopy
+}
