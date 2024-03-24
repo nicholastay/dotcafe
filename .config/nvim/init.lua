@@ -3,11 +3,8 @@
 --       l a z y  edition
 --
 
--- Default colour scheme
-vim.cmd [[
-	colorscheme slate
-	hi Normal guibg=NONE ctermbg=NONE
-]]
+-- ----------------
+-- The Basics
 
 -- Row lines
 vim.opt.number = true
@@ -30,10 +27,6 @@ vim.opt.expandtab = false
 vim.opt.termguicolors = true
 vim.opt.scrolloff = 3 -- Keep 3 lines when scrolling
 
--- Disable line stuff as we have our own bar
--- vim.opt.showmode = false
--- vim.opt.modeline = false
-
 -- Store undo between starts
 vim.opt.undofile = true
 vim.opt.undolevels = 1000
@@ -47,12 +40,11 @@ vim.opt.splitright = true
 vim.opt.fileformat = "unix"
 
 -- ----------------
-
 -- Bindings
 
 -- Leader is Space
-vim.keymap.set("n", "Space", "<nop>")
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Clipboard via Leader
 vim.keymap.set("v", "<leader>y", '"+y', { silent = true })
@@ -68,3 +60,18 @@ vim.keymap.set("n", "S", ":%s//g<Left><Left>", { noremap = true })
 -- Save and next buffer when multiple files
 vim.keymap.set("n", "<leader>-", ':w|bd<cr>')
 
+-- ----------------
+-- Bloat
+
+-- Load Bloat if not in lite mode (by setting env NT_NVIM_LITE to anything), otherwise apply default tweaks
+
+if os.getenv("NT_NVIM_LITE") == nil then
+	-- Load away!
+	require("bloat")
+else
+	-- Default colour scheme
+	vim.cmd [[
+		colorscheme slate
+		hi Normal guibg=NONE ctermbg=NONE
+	]]
+end

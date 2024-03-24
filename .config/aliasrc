@@ -23,9 +23,11 @@ alias diff="diff --color=auto"
 alias d="git --git-dir=$HOME/.dotcafe.git --work-tree=$HOME"
 
 # Shortcuts
-alias v="$EDITOR"
-alias vi="$EDITOR"
-alias vim="$EDITOR"
+alias v="nvim"
+alias vi="nvim"
+alias vim="nvim"
+alias vv="NT_NVIM_IDE=1 nvim"
+
 alias g="git"
 
 alias srcb="source $HOME/.bashrc"
