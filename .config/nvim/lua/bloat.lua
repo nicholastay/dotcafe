@@ -213,7 +213,7 @@ local plugins = {
 					 ['<C-f>'] = cmp.mapping.scroll_docs(4)
 				}),
 				sources = {
-					{ name = "nvim_lsp", max_item_count = 5 },
+					{ name = "nvim_lsp" },
 					{ name = "buffer", max_item_count = 5 },
 					{ name = "path", max_item_count = 3 },
 					{ name = "luasnip", max_item_count = 3 },
