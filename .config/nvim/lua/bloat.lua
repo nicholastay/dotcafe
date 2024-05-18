@@ -51,6 +51,14 @@ local plugins = {
 	-- Comment with 'gcc'
 	{ "numToStr/Comment.nvim", lazy = false, opts = {} },
 
+	-- Classic tpope/surround style. I would use surround in mini, but it's too different...
+	{
+		"kylechui/nvim-surround",
+		version = "*",
+		event = "VeryLazy",
+		opts = {},
+	},
+
 	-- Collection of neat stuff
 	{
 		"echasnovski/mini.nvim",
@@ -58,9 +66,6 @@ local plugins = {
 		config = function()
 			-- Status line
 			require("mini.statusline").setup({ use_icons = false, set_vim_settings = false, })
-
-			-- Surround (this version uses S leader)
-			require("mini.surround").setup()
 
 			-- Pairs
 			require("mini.pairs").setup()
@@ -108,24 +113,12 @@ local plugins = {
 		opts = {},
 	},
 
-	-- Multicursors (sorry vim purists, but when it's helpful it's really helpful lol)
+	-- Multicursors
+	-- (sorry vim purists, but when it's helpful it's really helpful lol)
+	-- [also sorry nvim lua enjoyers, i didn't like multicursors.nvim...]
 	{
-		"smoka7/multicursors.nvim",
+		"mg979/vim-visual-multi",
 		enabled = is_ide_bloat,
-		event = "VeryLazy",
-		dependencies = {
-			"smoka7/hydra.nvim",
-		},
-		opts = {},
-		cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
-		keys = {
-			{
-				mode = { "v", "n", },
-				"<Leader>m",
-				"<cmd>MCstart<cr>",
-				desc = "Create a selection for selected text or word under the cursor",
-			},
-		},
 	},
 
 	-- LSP "fun"
