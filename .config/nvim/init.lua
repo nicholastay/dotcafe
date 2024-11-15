@@ -60,6 +60,15 @@ vim.keymap.set("n", "S", ":%s//g<Left><Left>", { noremap = true })
 -- Save and next buffer when multiple files
 vim.keymap.set("n", "<leader>-", ':w|bd<cr>')
 
+-- Move lines in visual or with ctrl(insert+visual)
+-- (https://stackoverflow.com/questions/41084565/moving-multiple-lines-in-vim-visual-mode)
+vim.keymap.set("n", "<c-j>", ":<C-u>m+<CR>==", { noremap = true })
+vim.keymap.set("n", "<c-k>", ":<C-u>m-2<CR>==", { noremap = true })
+vim.keymap.set("i", "<c-j>", ":m+<CR>==gi", { noremap = true })
+vim.keymap.set("i", "<c-k>", ":m-2<CR>==gi", { noremap = true })
+vim.keymap.set("x", "J", ":m'>+<CR>gv=gv", { noremap = true })
+vim.keymap.set("x", "K", ":m-2<CR>gv=gv", { noremap = true })
+
 -- ----------------
 -- Bloat
 
