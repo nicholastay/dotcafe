@@ -36,6 +36,9 @@ setopt INC_APPEND_HISTORY
 # Store history including times
 setopt EXTENDED_HISTORY
 
+# Completion menu selector
+zstyle ':completion:*' menu select
+
 # Use vim keys
 bindkey -v
 KEYTIMEOUT=1
