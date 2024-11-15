@@ -2,3 +2,5 @@
 vim.b.editorconfig = false
 vim.opt_local.textwidth = 72
 vim.opt_local.colorcolumn = '+1'
+-- Remove weird indenting
+vim.opt_local.cindent = false
