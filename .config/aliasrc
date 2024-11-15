@@ -3,6 +3,7 @@
 # General utility
 alias cp="cp -iv"
 alias mv="mv -iv"
+alias rm="rm -v"
 alias ls="ls --color=auto --group-directories-first"
 alias ll="ls -lh"
 alias la="ls -lah"
@@ -40,6 +41,8 @@ alias cfb="$EDITOR $HOME/.bashrc"
 alias cfz="$EDITOR $HOME/.zshrc"
 alias cfp="$EDITOR $HOME/.profile"
 alias cfv="$EDITOR $HOME/.config/nvim"
+alias cfvi="$EDITOR $HOME/.config/nvim/init.lua"
+alias cfvb="$EDITOR $HOME/.config/nvim/lua/bloat.lua"
 alias cfa="$EDITOR $HOME/.config/aliasrc"
 alias cfg="$EDITOR $HOME/.config/git/config"
 alias cfs="$EDITOR $HOME/.ssh/config"
@@ -77,3 +80,4 @@ skip() { tail -n +$(($1 + 1)) ;}
 take() { head -n $1 ;}
 
 alias ytaudio='yt-dlp --extractor-args "youtube:player_client=default,ios" -x --audio-format mp3 --embed-thumbnail --embed-metadata'
+alias ytd='yt-dlp --extractor-args "youtube:player_client=default,ios" --embed-chapters --embed-subs --sponsorblock-mark default --sub-lang "en.*,ja.*,ko.*,zh.*" --sub-format="ass/srt/best" --merge-output-format mkv'

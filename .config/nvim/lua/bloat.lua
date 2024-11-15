@@ -65,13 +65,13 @@ local plugins = {
 		version = false,
 		config = function()
 			-- Status line
-			require("mini.statusline").setup({ use_icons = false, set_vim_settings = false, })
+			require("mini.statusline").setup({ set_vim_settings = false, })
 
 			-- Pairs
 			require("mini.pairs").setup()
 
 			-- Tabline
-			require("mini.tabline").setup({ show_icons = false, })
+			require("mini.tabline").setup({ })
 
 			-- Move line/block around in visual mode with alt-hjkl
 			require("mini.move").setup()
@@ -84,14 +84,9 @@ local plugins = {
 		end,
 	},
 
-
-	-- ----------------
-	-- Below will be the "IDE bloat level"
-	
 	-- Treesitter highlights
 	{
 		"nvim-treesitter/nvim-treesitter",
-		enabled = is_ide_bloat,
 		build = ":TSUpdate",
 		config = function()
 			local configs = require("nvim-treesitter.configs")
@@ -100,6 +95,9 @@ local plugins = {
 			})
 		end,
 	},
+
+	-- ----------------
+	-- Below will be the "IDE bloat level"
 
 	-- What am I doing?
 	{
@@ -225,20 +223,20 @@ require("lazy").setup(plugins, {
 	ui = {
 		-- Replace lazy.nvim icons with non-nerd-font emojis
 		-- (Stolen from kickstart.nvim)
-		icons = {
-			cmd = '⌘',
-			config = '🛠',
-			event = '📅',
-			ft = '📂',
-			init = '⚙',
-			keys = '🗝',
-			plugin = '🔌',
-			runtime = '💻',
-			require = '🌙',
-			source = '📄',
-			start = '🚀',
-			task = '📌',
-			lazy = '💤 ',
-		},
+		-- icons = {
+		-- 	cmd = '⌘',
+		-- 	config = '🛠',
+		-- 	event = '📅',
+		-- 	ft = '📂',
+		-- 	init = '⚙',
+		-- 	keys = '🗝',
+		-- 	plugin = '🔌',
+		-- 	runtime = '💻',
+		-- 	require = '🌙',
+		-- 	source = '📄',
+		-- 	start = '🚀',
+		-- 	task = '📌',
+		-- 	lazy = '💤 ',
+		-- },
 	},
 })
